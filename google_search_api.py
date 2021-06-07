@@ -19,25 +19,29 @@ def pulling_data(job_titles, cities):
             # results = search.get_dict()
             # jobs_results = results['jobs_results']
 
-            #looping through 10 pages
-            
+            #looping through 10 pages            
             for x in range(1):                
                 params['start'] = 10 * x
                 search = GoogleSearch(params)
                 results = search.get_dict()
                 # print(type(results))
-                # for k,v in results.items():
-                #     print(k)
-                print('does it get here?')
+              
+    
                 #loop and call validate response on each item of results['job_search']
                 #pass each row to validate response
                 #only return false with the columns we don't want
                 #continue with the ones you want to keep
                 
+                #val is going to be either True of False, depending on what validate_response returns
                 val = validate_response(results)
+                print(val)
                 if val:
-                    print('does it return true?')
-                    job_results += results['jobs_results']
+                    response = columns_validation(results)
+                    if response:
+                        print(results['jobs_results'])
+                        job_results += results['jobs_results']
+                    else:
+                        print('response was false')
                 
                 
     #list of dictionaries
@@ -51,17 +55,22 @@ def validate_response(results):
         print('if job_results is empty, then this should print')
         print(results['search_metadata']["status"])
         return False
-    print(results['jobs_results'])
-    lst = ['title', 'company_name', 'location', 'via', 'description', 'job_id']
+    return True
+    # print(results['jobs_results'])
+
+def columns_validation(results):
+    lst = ['title', 'location', 'job_id']
+    #prioritize: title, location, job_id --> if rows don't have these, then we don't want them
+    #if these are empty, return false
     for column in lst:
         if column not in results['jobs_results']:
-            print(results['jobs_results']['title'])
-            print(column)
+            # print(results['jobs_results']['title'])
+            print('is columns_validation returning false?')
             return False
 
     if 'schedule_type' not in results['jobs_results']['detected_extensions']:
-        print('schedule type')
-        return False
+            print('schedule type')
+            return False
     return True
 
 def setup_db():
