@@ -8,7 +8,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///employment_data.db'
 db = SQLAlchemy(app)
 
 class EmploymentData(db.Model):
-    id = db.Column(db.Integer)
+    id = db.Column(db.Integer, autoincrement=True)
     title = db.Column(db.String(255), nullable=False)
     company_name = db.Column(db.String(255), nullable=False)
     location = db.Column(db.String(255), nullable=False)
@@ -19,4 +19,4 @@ class EmploymentData(db.Model):
 
 
     def __repr__(self):
-        return f"<employment data {self.title} {self.company_name}>"
+        return f"<employment_data {self.id} {self.title} {self.company_name}>"
