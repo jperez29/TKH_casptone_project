@@ -16,7 +16,7 @@ def pulling_data(job_titles, cities):
 
 
             #looping through 10 pages            
-            for x in range(1):                
+            for x in range(10):                
                 params['start'] = 10 * x
                 search = GoogleSearch(params)
                 #json data
@@ -53,7 +53,6 @@ def pulling_data(job_titles, cities):
 def jobs_results_validation(results):
     print('does validate response work?')
     if 'jobs_results' not in results:
-        print(params['q'])
         print('if job_results is not found in the json data, then this should print')
         # print(results['search_metadata']["status"])
         return False
@@ -71,9 +70,9 @@ def columns_validation(job_post):
             print('is columns_validation returning false?')
             return False
     #if this returns false then the job posting will not be added to the list, even if the above columns are found in job posting
-    if 'schedule_type' not in job_post['detected_extensions']:
-            print('schedule type')
-            return False
+    # if 'schedule_type' not in job_post['detected_extensions']:
+    #         print('schedule type')
+    #         return False
     return True
 
 def setup_db():
@@ -91,7 +90,7 @@ def setup_db():
         #job_id is the primary key
         exists = db.session.query(EmploymentData).filter_by(job_id=dct['job_id']).first()
         if not exists:
-            row = EmploymentData(title = dct['title'], company_name = dct['company_name'], location = dct['location'], via = dct['via'], description = dct['description'], schedule_type = dct['detected_extensions']['schedule_type'], job_id = dct['job_id'])
+            row = EmploymentData(title = dct['title'], company_name = dct['company_name'], location = dct['location'], via = dct['via'], description = dct['description'], schedule_type = dct['detected_extensions'].get('schedule_type', None), job_id = dct['job_id'])
             print(row)
             db.session.add(row)
             db.session.commit()
