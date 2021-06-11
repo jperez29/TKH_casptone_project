@@ -37,8 +37,7 @@ def pulling_data(job_titles, cities):
                             job_results.append(job_post)
                         else:
                             print('response was false')
-                else:
-                    continue
+               
                         
     #list of dictionaries
     print(len(job_results))
