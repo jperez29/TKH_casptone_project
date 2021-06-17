@@ -16,7 +16,7 @@ def pulling_data(job_titles, cities):
 
 
             #looping through 10 pages            
-            for x in range(10):                
+            for x in range(50):                
                 params['start'] = 10 * x
                 search = GoogleSearch(params)
                 #json data
@@ -33,6 +33,8 @@ def pulling_data(job_titles, cities):
                     for job_post in job_postings:
                         response = columns_validation(job_post)
                         if response:
+                            job_post['job_category'] = job
+                            job_post['location_category'] = city
                             print(job_post)
                             job_results.append(job_post)
                         else:
@@ -65,6 +67,8 @@ def columns_validation(job_post):
 def setup_db():
     job_titles = ['software engineer', 'data analyst', 'web developer', 'data scientist', 'front-end developer', 'back-end developer', 'UI/UX designer']
     cities = ['new york city', 'newark new jersey', 'los angeles california', 'atlanta georgia']
+    # job_titles = ['software engineer']
+    # cities = ['new york city']
     data = pulling_data(job_titles, cities)
     db.drop_all()
     db.create_all()
@@ -75,7 +79,7 @@ def setup_db():
         #job_id is the primary key
         exists = db.session.query(EmploymentData).filter_by(job_id=dct['job_id']).first()
         if not exists:
-            row = EmploymentData(title = dct['title'], company_name = dct['company_name'], location = dct['location'], via = dct['via'], description = dct['description'], schedule_type = dct['detected_extensions'].get('schedule_type', None), job_id = dct['job_id'])
+            row = EmploymentData(title = dct['title'], company_name = dct['company_name'], location = dct['location'], via = dct['via'], job_category= dct['job_category'], location_category = dct['location_category'], description = dct['description'], schedule_type = dct['detected_extensions'].get('schedule_type', None), job_id = dct['job_id'])
             print(row)
             db.session.add(row)
             db.session.commit()

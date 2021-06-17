@@ -13,6 +13,8 @@ class EmploymentData(db.Model):
     company_name = db.Column(db.String(255), nullable=False)
     location = db.Column(db.String(255), nullable=False)
     via = db.Column(db.String(255), nullable=False)
+    job_category = db.Column(db.String(255), nullable=False) 
+    location_category = db.Column(db.String(255), nullable=False) 
     description = db.Column(db.Text, nullable=True)
     schedule_type = db.Column(db.String(255), nullable=True)
     job_id = db.Column(db.Text, primary_key=True, nullable=False)
