@@ -28,7 +28,6 @@ def pulling_data(job_titles, cities):
                 #if jobs_results key is found in the json data, then this will return true and it'll enter the if statament. Otherwise continue with the for loop to get more pages
                 if validate_response:
                     job_postings = results['jobs_results']
-                    print(type(job_postings))
                     #we're getting 10 pages per loop in a list, so we're looping through each job posting to check that the columns we want are there
                     for job_post in job_postings:
                         response = columns_validation(job_post)
@@ -39,6 +38,8 @@ def pulling_data(job_titles, cities):
                             job_results.append(job_post)
                         else:
                             print('response was false')
+                else:
+                    print(f'No job posting found for {job} in {city}')
                
                         
     #list of dictionaries
@@ -47,11 +48,9 @@ def pulling_data(job_titles, cities):
 
 def jobs_results_validation(results):
     if 'jobs_results' not in results:
-        print('if job_results is not found in the json data, then this should print')
-        # print(results['search_metadata']["status"])
+        # print('if job_results is not found in the json data, then this should print')
         return False
     return True
-    # print(results['jobs_results'])
 
 def columns_validation(job_post):
     lst = ['title', 'location', 'job_id']
@@ -65,12 +64,12 @@ def columns_validation(job_post):
     return True
 
 def setup_db():
-    job_titles = ['software engineer', 'data analyst', 'web developer', 'data scientist', 'front-end developer', 'back-end developer', 'UI/UX designer']
+    job_titles = ['front-end developer', 'back-end developer', 'UI/UX designer']
     cities = ['new york city', 'newark new jersey', 'los angeles california', 'atlanta georgia']
     # job_titles = ['software engineer']
     # cities = ['new york city']
     data = pulling_data(job_titles, cities)
-    db.drop_all()
+    
     db.create_all()
 
     #adding data to database
