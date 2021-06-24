@@ -9,12 +9,12 @@ import newark
 import atlanta
 import losangeles
 import home
-import dummy
+import overall
 
 
 PAGES = {
-    "Dummy": dummy,
     "Home": home,
+    "Comprehensive View": overall,
     "Atlanta": atlanta,
     "Los Angeles": losangeles,
     "Newark": newark,

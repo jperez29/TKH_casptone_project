@@ -94,7 +94,13 @@ top_tech_backdev_la = tech_backend_developer_la.sort_values(by='frequency', asce
 top_tech_uiux_la = tech_uiux_developer_la.sort_values(by='frequency', ascending=False).head(10)
 
 def app():
-    st.title('NEWARK')
+    st.title('LOS ANGELES')
+
+    st.write("Los Angeles is a hot-spot in the arena of technology being home to “Silicon Beach,” a rich hub of pioneering companies in tech. Contrasting cities of Northern California, Los Angeles is unique in its proximity to Hollywood and its extensive entertainment industry. Below you will find some of the top tech jobs and their technologies and skills. Also, take a look at resources such as The Knowledge House and Built in LA for further information about salaries, companies, job postings and opportunities to upskill.")
+    st.write("")
+    st.write("Tech Job in Los Angeles")
+    ax = data[data["location_category"] == "los angeles california" ].groupby("job_category").size()
+    st.bar_chart(ax)
     #---------graph for software engineer-----------------------------
 
     x = top_tech_se_la['technology']
@@ -106,7 +112,8 @@ def app():
 
     fig, ax = plt.subplots(figsize = (10,5))
     ax.bar(x,y, color = colors)
-    ax.set(xlabel='technology', ylabel = 'Frequency', title ='The Top Technologies Required by Employers For Software Engineers in Newark, NJ')
+    ax.set(xlabel='technology', ylabel = 'Frequency')
+    st.write('The Top Technologies Required by Employers For Software Engineers in Los Angeles, CA')
     plt.xticks(rotation=-45, ha="left", rotation_mode="anchor")
     st.write(fig)
     #---------graph for data analyst------------------------------
@@ -120,7 +127,8 @@ def app():
 
     fig, ax = plt.subplots(figsize = (10,5))
     ax.bar(x_da,y_da, color = colors)
-    ax.set(xlabel='technology', ylabel = 'Frequency', title ='The Top Technologies/Skills Required by Employers For Data Analyst in Newark, NJ')
+    ax.set(xlabel='technology', ylabel = 'Frequency')
+    st.write('The Top Technologies/Skills Required by Employers For Data Analyst in Los Angeles, CA')
     plt.xticks(rotation=-45, ha="left", rotation_mode="anchor")
     st.write(fig)
 
@@ -136,7 +144,8 @@ def app():
 
     fig, ax = plt.subplots(figsize = (10,5))
     ax.bar(x_ds,y_ds, color = colors)
-    ax.set(xlabel='technology', ylabel = 'Frequency', title ='The Top Technologies/Skills Required by Employers For Data Scientist in Newark, NJ')
+    ax.set(xlabel='technology', ylabel = 'Frequency')
+    st.write('The Top Technologies/Skills Required by Employers For Data Scientist in Los Angeles, CA')
     plt.xticks(rotation=-45, ha="left", rotation_mode="anchor")
     st.write(fig)
 
@@ -151,7 +160,8 @@ def app():
 
     fig, ax = plt.subplots(figsize = (10,5))
     ax.bar(x_wdev,y_wdev, color = colors)
-    ax.set(xlabel='technology', ylabel = 'Frequency', title ='The Top Technologies/Skills Required by Employers For Web Developer in Newark, NJ')
+    ax.set(xlabel='technology', ylabel = 'Frequency')
+    st.write('The Top Technologies/Skills Required by Employers For Web Developer in Los Angeles, CA')
     plt.xticks(rotation=-45, ha="left", rotation_mode="anchor")
     st.write(fig)
     #---------graph for front end developer-----------------------------
@@ -165,7 +175,8 @@ def app():
 
     fig, ax = plt.subplots(figsize = (10,5))
     ax.bar(x_frtdev,y_frtdev, color = colors)
-    ax.set(xlabel='technology', ylabel = 'Frequency', title ='The Top Technologies/Skills Required by Employers for front end developers in Newark, NJ')
+    ax.set(xlabel='technology', ylabel = 'Frequency')
+    st.write('The Top Technologies/Skills Required by Employers for front end developers in Los Angeles, CA')
     plt.xticks(rotation=-45, ha="left", rotation_mode="anchor")
     st.write(fig)
 
@@ -180,7 +191,8 @@ def app():
 
     fig, ax = plt.subplots(figsize = (10,5))
     ax.bar(x_backdev,y_backdev, color = colors)
-    ax.set(xlabel='technology', ylabel = 'Frequency', title ='The Top Technologies/Skills Required by Employers for Back End developers in Newark, NJ')
+    ax.set(xlabel='technology', ylabel = 'Frequency')
+    st.write('The Top Technologies/Skills Required by Employers for Back End developers in Los Angeles, CA')
     plt.xticks(rotation=-45, ha="left", rotation_mode="anchor")
     st.write(fig)
     #---------graph for uiux designer-----------------------------
@@ -194,6 +206,7 @@ def app():
 
     fig, ax = plt.subplots(figsize = (10,5))
     ax.bar(x_uiux,y_uiux, color = colors)
-    ax.set(xlabel='technology', ylabel = 'Frequency', title ='The Top Technologies/Skills Required by Employers for UI/UX designers in Newark, NJ')
+    ax.set(xlabel='technology', ylabel = 'Frequency')
+    st.write('The Top Technologies/Skills Required by Employers for UI/UX designers in Los Angeles, CA')
     plt.xticks(rotation=-45, ha="left", rotation_mode="anchor")
     st.write(fig)

@@ -19,19 +19,6 @@ front_end_developer_ny = job_postings('front-end developer', 'new york city')
 back_end_developer_ny = job_postings('back-end developer', 'new york city')
 uiux_designer_ny = job_postings('UI/UX designer', 'new york city')
 
-
-all_technologies = ['python', 'ruby', 'scala', 'java', 'javascript', 'html', 'css', 'aws', 'node js',
-                    'c#', 'c++', 'git', 'github', 'sql', 'mysql', 'postgresql', 'oracle'
-                   'linux', 'hadoop',  'scala', 'spark', 'nosql', 'rest apis', 'node.js', 
-                   'mongodb', 'docker', 'kubernetes', 'terraform', 'teamcity', 'angular js', 'ides', 'bash'
-                   'http', 'react', 'angular', 'vue.js', 'apache cassandra', 'cloud services', 'oop', 'funcitonal programming'
-                   'bsa/aml', 'object-oriented programming', 'ssl certificates', 'version control system',
-                   'microsoft excel', 'power bi', 'stata', 'sas', 'web intelligence', 'tableau', 'snowflake',
-                   'redshift', 'looker', 'braze', 'adobe', 'r programming', 'microsoft office', 'airflow', 'databricks', 'etl', 
-                   'machine learning', 'powerpoint', 'matlab', 'apache shark', 'perl', 'statistics', 'matplotlib', 'pandas',
-                   'numpy', 'ggplot', 'bokeh', 'flask', 'django', 'd3.js', 'scikit-learn', 'tensorflow', 'pytorch', 'nlp',
-                   'meteor', '.net', 'laravel', 'zend', 'yii', 'php', 'elixir', 'express.js', 'figma']
-
 class Jobs:
     def __init__(self):
         self.tech = {}
@@ -54,11 +41,8 @@ class Jobs:
             for technology in all_technologies:
                 if technology in string:
                     self.tech[technology] = self.tech.get(technology, 0) + 1
-#                     if tech not in self.tech.keys():
-#                         self.tech[tech] = 1
-#                     else:
-#                         self.tech[tech] += 1
 
+#getting dictionaries of technologies for all jobs in NY
 software_engineerny = Jobs()
 software_engineerny.append_tech(software_engineer_ny['lowercase_description'])
 software_engineerny.tech
@@ -87,6 +71,7 @@ uiux_designerny = Jobs()
 uiux_designerny.append_tech(uiux_designer_ny['lowercase_description'])
 uiux_designerny.tech
 
+#turning dictionary of technologies into dataframes
 tech_software_engineer_ny = pd.DataFrame(list(software_engineerny.tech.items()), columns=['technology', 'frequency'])
 tech_data_analyst_ny = pd.DataFrame(list(data_analystny.tech.items()), columns=['technology', 'frequency'])
 tech_data_scientist_ny = pd.DataFrame(list(data_scientistny.tech.items()), columns=['technology', 'frequency'])
@@ -95,6 +80,7 @@ tech_frontend_developer_ny = pd.DataFrame(list(frontend_developerny.tech.items()
 tech_backend_developer_ny = pd.DataFrame(list(backend_developerny.tech.items()), columns=['technology', 'frequency'])
 tech_uiux_developer_ny = pd.DataFrame(list(uiux_designerny.tech.items()), columns=['technology', 'frequency'])
 
+#selecting the 10 technologies for each job title
 top_technologies_se = tech_software_engineer_ny.sort_values(by='frequency', ascending=False).head(10)
 top_technologies_da = tech_data_analyst_ny.sort_values(by='frequency', ascending=False).head(10)
 top_technologies_ds = tech_data_scientist_ny.sort_values(by='frequency', ascending=False).head(10)
@@ -108,7 +94,15 @@ top_technologies_uiux = tech_uiux_developer_ny.sort_values(by='frequency', ascen
 def app():
     st.title('NEW YORK CITY')
 
-    st.write("Tools for Software Engineer Roles in NY")
+    st.write("New York is a powerhouse in the tech industry being home to “Silicon Alley” teeming with tons of start-ups and well-known tech companies. Although Manhattan is highly regarded, other NYC boroughs are also leaving their mark on the tech sphere with innovative, entrepreneurial tech businesses and brands. Below you will find some of the top tech jobs as well as their technologies and skills. Also, take a look at resources such as The Knowledge House and Built in NY for further information about salaries, companies, job postings and opportunities to upskill.")
+    
+    st.write("")
+    st.write("Tech Jobs in New York")
+    ax = data[data["location_category"] == "new york city" ].groupby("job_category").size()
+    st.bar_chart(ax)
+    
+
+    
 
         # x = top_technologies_SE['technology']
     y = top_technologies_se['frequency']
@@ -119,7 +113,8 @@ def app():
 
     fig, ax = plt.subplots(figsize = (10,5))
     ax.bar(x,y, color = colors)
-    ax.set(xlabel='technology', ylabel = 'Frequency', title ='The Top Technologies Required by Employers For Software Engineers in NY')
+    ax.set(xlabel='technology', ylabel = 'Frequency')
+    st.write('The Top Technologies Required by Employers For Software Engineers in NY')
     plt.xticks(rotation=-45, ha="left", rotation_mode="anchor")
 
     plt.show()
@@ -127,7 +122,7 @@ def app():
     st.write(fig)
 
 #Tools for Data Analyst in NYC
-    st.write("Tools for Data Analyst Roles in NY")
+    
     x = top_technologies_da['technology']
     y = top_technologies_da['frequency']
 
@@ -137,7 +132,8 @@ def app():
 
     fig, ax = plt.subplots(figsize = (10,5))
     ax.bar(x,y, color = colors)
-    ax.set(xlabel='technology', ylabel = 'Frequency', title ='The Top Technologies/Skills Required by Employers For Data Analyst in NY')
+    ax.set(xlabel='technology', ylabel = 'Frequency')
+    st.write('The Top Technologies/Skills Required by Employers For Data Analyst in NY')
     plt.xticks(rotation=-45, ha="left", rotation_mode="anchor")
 
     plt.show()
@@ -145,7 +141,7 @@ def app():
 
 
 #Tools For Data Scientist 
-    st.write("Tools for Data Scientist Roles in NY")
+
 
     x = top_technologies_ds['technology']
     y = top_technologies_ds['frequency']
@@ -156,7 +152,8 @@ def app():
 
     fig, ax = plt.subplots(figsize = (10,5))
     ax.bar(x,y, color = colors)
-    ax.set(xlabel='technology', ylabel = 'Frequency', title ='The Top Technologies/Skills Required by Employers For Data Scientists in NY')
+    ax.set(xlabel='technology', ylabel = 'Frequency')
+    st.write('The Top Technologies/Skills Required by Employers For Data Scientists in NY')
     plt.xticks(rotation=-45, ha="left", rotation_mode="anchor")
 
     plt.show()
@@ -164,7 +161,7 @@ def app():
 
 
 #Tools For Web Developers
-    st.write("Tools for Web Developers in NY")
+ 
 
     x = top_technologies_wb['technology']
     y = top_technologies_wb['frequency']
@@ -175,7 +172,8 @@ def app():
 
     fig, ax = plt.subplots(figsize = (10,5))
     ax.bar(x,y, color = colors)
-    ax.set(xlabel='technology', ylabel = 'Frequency', title ='The Top Technologies/Skills Required by Employers For Web Developers in NY')
+    ax.set(xlabel='technology', ylabel = 'Frequency')
+    st.write('The Top Technologies/Skills Required by Employers For Web Developers in NY')
     plt.xticks(rotation=-45, ha="left", rotation_mode="anchor")
 
     plt.show()
@@ -183,7 +181,7 @@ def app():
 
 
 #Tools For Front-end Developers
-    st.write("Tools for Front-end Developers in NY")
+    
     x = top_technologies_frtd['technology']
     y = top_technologies_frtd['frequency']
 
@@ -193,7 +191,8 @@ def app():
 
     fig, ax = plt.subplots(figsize = (10,5))
     ax.bar(x,y, color = colors)
-    ax.set(xlabel='technology', ylabel = 'Frequency', title ='The Top Technologies/Skills Required by Employers for Front End Developers in NY')
+    ax.set(xlabel='technology', ylabel = 'Frequency')
+    st.write('The Top Technologies/Skills Required by Employers for Front End Developers in NY')
     plt.xticks(rotation=-45, ha="left", rotation_mode="anchor")
 
     plt.show()
@@ -202,7 +201,7 @@ def app():
 
 
 #Tools For Back-end Developers
-    st.write("Tools for Back-endDevelopers in NY")
+   
 
     x = top_technologies_backd['technology']
     y = top_technologies_backd['frequency']
@@ -213,7 +212,8 @@ def app():
 
     fig, ax = plt.subplots(figsize = (10,5))
     ax.bar(x,y, color = colors)
-    ax.set(xlabel='technology', ylabel = 'Frequency', title ='The Top Technologies/Skills Required by Employers for Back End Developers in NY')
+    ax.set(xlabel='technology', ylabel = 'Frequency')
+    st.write('The Top Technologies/Skills Required by Employers for Back End Developers in NY')
     plt.xticks(rotation=-45, ha="left", rotation_mode="anchor")
 
     plt.show()
@@ -222,7 +222,7 @@ def app():
 
 
 #Tools For UI/UX Developers
-    st.write("Tools for UI/UX Developers in NY")
+   
     x = top_technologies_uiux['technology']
     y = top_technologies_uiux['frequency']
 
@@ -232,7 +232,8 @@ def app():
 
     fig, ax = plt.subplots(figsize = (10,5))
     ax.bar(x,y, color = colors)
-    ax.set(xlabel='technology', ylabel = 'Frequency', title ='The Top Technologies/Skills Required by Employers for UI/UX Developers in NY')
+    ax.set(xlabel='technology', ylabel = 'Frequency')
+    st.write('The Top Technologies/Skills Required by Employers for UI/UX Developers in NY')
     plt.xticks(rotation=-45, ha="left", rotation_mode="anchor")
 
     plt.show()
