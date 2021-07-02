@@ -14,7 +14,7 @@ def app():
     image = Image.open("lagos-techie-IgUR1iX0mqM-unsplash.jpg")
     st.image(image, use_column_width=True)
 
-    st.write("The Alumni Resource Dashboard displays the trends of skills and employment in the tech industry. The data listed in this site was derived from Google Jobs API. We analyzed data for the following roles:")
+    st.write("The Alumni Resource Dashboard displays the trends of skills and employment in the tech industry. The data listed in this site was derived from Google Jobs API, resulting in a dataset of over 7,000+ positions spanning the four cities where the THK Fellowship will now be hosted. We analyzed data for the following roles:")
     st.write("- Software Engineer")
     st.write("- Data Analyst")
     st.write("- Data Scientist")
@@ -25,6 +25,9 @@ def app():
 
     st.write("")
     st.write("")
-    st.write("We hope it’s useful in your job search and tech journey!")
+
+    original_title = '<p style="font-size: 20px;">We hope it’s useful in your job search and tech journey!</p>'
+    st.markdown(original_title, unsafe_allow_html=True)
+    # st.write("We hope it’s useful in your job search and tech journey!")
     
 

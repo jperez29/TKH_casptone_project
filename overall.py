@@ -72,8 +72,8 @@ def app():
     m = np.arange(7)
     width = 0.35
     axes.bar(m-width, y1, label = 'Contractor', width = width, color = 'darkcyan', align='edge')
-    axes.bar(m, y2, label = 'internship', width = width, color = 'palevioletred')
-    axes.bar(m + width, y3, label = 'full-time', width = width, color = 'royalblue')
+    axes.bar(m, y2, label = 'Internship', width = width, color = 'palevioletred')
+    axes.bar(m + width, y3, label = 'Part-time', width = width, color = 'royalblue')
     axes.set_xticks(m)
     axes.set_xticklabels(labels)
     plt.xlabel('Job Titles', fontsize=20)
