@@ -1,6 +1,8 @@
+<div align="center"><img src="./img/capstone_dashboard.PNG"></div>
+
 # Employment Trends Dashboard - THE KNOWLEDGE HOUSE
 
-# Problem Statement 
+## Problem Statement 
 The Knowledge House, Inc.(TKH) needs to choose which resources they will have available for their alumni. For this project, the primary focus was 
 to analyze and evaluate data to help fellows and alumni entering the current job market. TKH will create events, programming, and resources their
 alumni need based on participants’ needs and economic and employment trends provided in our analysis.
@@ -9,6 +11,5 @@ The technology field is rapidly changing. Therefore, TKH needs timely informatio
 
 ### [Take a look at our dashboard!](https://share.streamlit.io/chicodes2020/tkh_casptone_project/main)
 
-<div align="center"><img src="./img/capstone_dashboard.PNG"></div>
 <!-- 
 ![capstone_dashboard.PNG](C:\Users\Janet\TKH\alumni_resources_project\img\capstone_dashboard.PNG) -->
