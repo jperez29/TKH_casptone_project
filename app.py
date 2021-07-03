@@ -1,24 +1,24 @@
-import home
-import about
-import hypothesis_one
-import hypothesis_two
-import borough_cases
-import overview
-import streamlit as st
+from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
+  
+app = Flask(__name__)
 
-PAGES = {
-    "Home": home,
-    "Totals Overview": overview,
-    "Borough Cases": borough_cases,
-    "Hypothesis One": hypothesis_one,
-    "Hypothesis Two": hypothesis_two,
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///employment_data.db'
 
-    "About": about,
-}
+db = SQLAlchemy(app)
 
-st.set_page_config(layout="wide")
+class EmploymentData(db.Model):
+    # id = db.Column(db.Integer, autoincrement=True)
+    title = db.Column(db.String(255), nullable=False)
+    company_name = db.Column(db.String(255), nullable=False)
+    location = db.Column(db.String(255), nullable=False)
+    via = db.Column(db.String(255), nullable=False)
+    job_category = db.Column(db.String(255), nullable=False) 
+    location_category = db.Column(db.String(255), nullable=False) 
+    description = db.Column(db.Text, nullable=True)
+    schedule_type = db.Column(db.String(255), nullable=True)
+    job_id = db.Column(db.Text, primary_key=True, nullable=False)
 
-st.sidebar.title('Navigation')
-selection = st.sidebar.radio("Go to", list(PAGES.keys()))
-page = PAGES[selection]
-page.app()
+
+    def __repr__(self):
+        return f"<employment_data {self.title} {self.company_name}>"
