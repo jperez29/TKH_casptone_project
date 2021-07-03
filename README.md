@@ -11,5 +11,32 @@ The technology field is rapidly changing. Therefore, TKH needs timely informatio
 
 ### [Take a look at our dashboard!](https://share.streamlit.io/chicodes2020/tkh_casptone_project/main)
 
-<!-- 
-![capstone_dashboard.PNG](C:\Users\Janet\TKH\alumni_resources_project\img\capstone_dashboard.PNG) -->
+## Setting up Environment
+
+1. activate your virtual environment
+2. cd to the directory where requirements.txt is located
+3. run the following code in your shell to install all the libraries necessary for the application.  
+ 
+```python
+ pip install -r requirements.txt
+ ```
+## Technology Stack
+
+### Python was the primary language used for this project
+The following libraries/frameworks were used:
+- Pandas
+- matplotlib
+- Flask-SQLAlchemy
+- Streamlit for dashboard
+- requests
+- serpapi
+
+
+<!-- ## Team Members:
+
+### Janet Perez
+
+### Chioma
+
+### Elston -->
+
