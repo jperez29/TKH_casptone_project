@@ -8,3 +8,5 @@ env/
 venv/
 ENV/
 apikey.txt
+
+**/.DS_Store
